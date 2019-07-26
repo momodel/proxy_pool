@@ -15,6 +15,7 @@ import re
 import sys
 import requests
 from time import sleep
+import json
 
 sys.path.append('..')
 
@@ -56,6 +57,8 @@ class GetFreeProxy(object):
                         port_sum *= 10
                         port_sum += key.index(c)
                     port = port_sum >> 3
+                    data = '{}:{}'.format(ip, port)
+                    print('data', data)
                     yield '{}:{}'.format(ip, port)
                 except Exception as e:
                     print(e)
@@ -246,6 +249,25 @@ class GetFreeProxy(object):
             for tr in tr_list:
                 yield tr.xpath("./td[2]/text()")[0] + ":" + tr.xpath("./td[3]/text()")[0]
 
+    @staticmethod
+    def notFreeProxy01():
+        proxyList = requests.get("http://ged.ip3366.net/api/?key=20190725135107367&getnum=30&area=1").content
+        # print('list', proxyList.decode('gbk'))
+        try:
+            # list = json.loads(proxyList.decode('gbk'))
+            # print('sssssss', list[0]['Ip'])
+            # print(proxy.decode() )
+            for item in proxyList.decode('gbk').split('\n'):
+                # proxyIp = item['Ip']
+                # proxyPort = item['Port']
+                # proxy = "{0}:{1}".format(proxyIp, proxyPort)
+                print('item', item)
+                proxy = item
+                print('proxy', proxy)
+                if proxy:
+                    yield proxy
+        except:
+            print('sss')
     # @staticmethod
     # def freeProxy10():
     #     """
@@ -299,4 +321,4 @@ if __name__ == '__main__':
     # CheckProxy.checkGetProxyFunc(GetFreeProxy.freeProxy08)
     # CheckProxy.checkGetProxyFunc(GetFreeProxy.freeProxy09)
 
-    CheckProxy.checkAllGetProxyFunc()
+    # CheckProxy.checkAllGetProxyFunc()

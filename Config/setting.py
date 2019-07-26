@@ -22,7 +22,7 @@ class ConfigError(BaseException):
 DB_TYPE = getenv('db_type', 'SSDB')
 
 if DB_TYPE == 'SSDB':
-    DB_HOST = getenv('ssdb_host', '127.0.0.1')
+    DB_HOST = getenv('ssdb_host', '36.26.77.39')
     DB_PORT = getenv('ssdb_port', '6379')
     DB_PASSWORD = getenv('ssdb_password', '')
 elif DB_TYPE == 'MONGODB':
@@ -46,15 +46,16 @@ DATABASES = {
 # register the proxy getter function
 
 PROXY_GETTER = [
-    "freeProxy01",
-    "freeProxy02",
-    "freeProxy03",
-    "freeProxy04",
-    "freeProxy05",
-    "freeProxy06",
-    "freeProxy07",
-    "freeProxy08",
-    "freeProxy09",
+    "notFreeProxy01"
+    # "freeProxy01",
+    # "freeProxy02",
+    # "freeProxy03",
+    # "freeProxy04",
+    # "freeProxy05",
+    # "freeProxy06",
+    # "freeProxy07",
+    # "freeProxy08",
+    # "freeProxy09",
 ]
 
 # # API config http://127.0.0.1:5010
